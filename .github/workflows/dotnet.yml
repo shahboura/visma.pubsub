@@ -8,10 +8,11 @@ on:
 
 jobs:
   build:
-  
+
     strategy:
       matrix:
         configuration: [Debug, Release]
+        framework: [netcoreapp3.1, net5.0]
 
     runs-on: ubuntu-latest
 
@@ -28,6 +29,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build -c ${{matrix.configuration}} -f ${{matrix.framework}} --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test -c ${{matrix.configuration}} -f ${{matrix.framework}} --no-build --verbosity normal
