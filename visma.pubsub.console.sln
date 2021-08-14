@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "visma.pubsub.console", "src\visma.pubsub.console\visma.pubsub.console.csproj", "{A3E9219F-EE0A-4536-9661-AFFB320B1188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "visma.pubsub", "src\visma.pubsub\visma.pubsub.csproj", "{A3CC8AB3-453E-4EAC-AC62-959EF1BEEA4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "visma.pubsub", "src\visma.pubsub\visma.pubsub.csproj", "{A3CC8AB3-453E-4EAC-AC62-959EF1BEEA4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "visma.pubsub.tests", "tests\visma.pubsub.tests\visma.pubsub.tests.csproj", "{AB3702D9-0205-4ADC-B217-0D2688D466C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A3CC8AB3-453E-4EAC-AC62-959EF1BEEA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3CC8AB3-453E-4EAC-AC62-959EF1BEEA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3CC8AB3-453E-4EAC-AC62-959EF1BEEA4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB3702D9-0205-4ADC-B217-0D2688D466C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB3702D9-0205-4ADC-B217-0D2688D466C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB3702D9-0205-4ADC-B217-0D2688D466C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB3702D9-0205-4ADC-B217-0D2688D466C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
