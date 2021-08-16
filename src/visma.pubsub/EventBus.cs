@@ -37,9 +37,8 @@ namespace visma.pubsub
             subscribers.Clear();
         }
 
-        public void Subscribe<T>(object context, Action<T> action)
+        public void Subscribe(object context, Type type, Delegate action)
         {
-            var type = typeof(T);
             var subscriber = new Subscriber
             {
                 Context = new WeakReference(context),
@@ -52,6 +51,11 @@ namespace visma.pubsub
                 {
                     v.Add(subscriber); return v;
                 });
+        }
+
+        public void Subscribe<T>(object context, Action<T> action)
+        {
+            Subscribe(context, typeof(T), action);
         }
 
         public void Unsubscribe(object context)
