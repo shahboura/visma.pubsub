@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -7,8 +8,9 @@ namespace visma.pubsub.console
     public class SubscribersHandler : ISubscribersHandler
     {
         private readonly IEventBus _eventBus;
-        private readonly Collection<Subscriber> _subscribers = new Collection<Subscriber>();
+        private readonly List<Subscriber> _subscribers = new List<Subscriber>();
         private int _counter = 1;
+        public IReadOnlyCollection<Subscriber> Subscribers => _subscribers.AsReadOnly();
 
         public SubscribersHandler(IEventBus eventBus)
         {
@@ -29,19 +31,18 @@ namespace visma.pubsub.console
 
         public void DeleteSubscriber(string name)
         {
-            for (int i = _subscribers.Count - 1; i >= 0; i--)
-            {
-                var current = _subscribers[i];
+            var subscriber = _subscribers.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
 
-                if (current.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    Unsubscribe(current);
-                    _subscribers.RemoveAt(i);
-                    Console.WriteLine($"subscriber {current.Name} deleted");
-                }
+            if (subscriber == null)
+            {
+                Console.WriteLine($"No subscribers found matching name {name}");
+                return;
             }
 
+            Unsubscribe(subscriber);
+            _subscribers.Remove(subscriber);
             GC.Collect();
+            Console.WriteLine($"subscriber {name} deleted");
         }
 
         public void DisplaySubscribers()
@@ -52,11 +53,8 @@ namespace visma.pubsub.console
                 return;
             }
 
-            foreach (var subscriber in _subscribers)
-            {
-                Console.WriteLine(
-                    $"subscriber with name {subscriber.Name} is {(!subscriber.IsWired ? "not" : string.Empty)} wired");
-            }
+            _subscribers.ForEach(s => Console.WriteLine(
+                    $"subscriber with name {s.Name} is {(!s.IsWired ? "not" : string.Empty)} wired"));
         }
 
         public void Subscribe(string name)
@@ -65,6 +63,7 @@ namespace visma.pubsub.console
 
             if (subscriber == null)
             {
+                Console.WriteLine($"No subscribers found matching name {name}");
                 return;
             }
 
@@ -84,6 +83,7 @@ namespace visma.pubsub.console
 
             if (subscriber == null)
             {
+                Console.WriteLine($"No subscribers found matching name {name}");
                 return;
             }
 
