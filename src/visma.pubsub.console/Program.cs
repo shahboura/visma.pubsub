@@ -12,14 +12,14 @@ namespace visma.pubsub.console
             [Option('s', "sum", HelpText = "Add new sum subscriber.")]
             public bool Sum { get; set; }
 
-            [Option('p', "ping", HelpText = "Add new sum subscriber.")]
+            [Option('p', "ping", HelpText = "Add new ping subscriber.")]
             public bool Ping { get; set; }
         }
 
         [Verb("subscribe", HelpText = "Subscribe / Unsubscribe to publishers.")]
         public class SubscribeOptions
         {
-            [Option('n', "name", Required = true, HelpText = "Subscriber's name to remove.")]
+            [Option('n', "name", Required = true, HelpText = "Subscriber's name to use.")]
             public string Name { get; set; }
 
             [Option('a', "add", SetName = "subscription", HelpText = "Adds subscription by name.")]
